@@ -1,0 +1,69 @@
+//o codigo para o daltonismo pronta e feito
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: DaltonismApp(),
+    );
+  }
+}
+
+class DaltonismApp extends StatefulWidget {
+  @override
+  _DaltonismAppState createState() => _DaltonismAppState();
+}
+
+class _DaltonismAppState extends State<DaltonismApp> {
+  bool _isDaltonismEnabled = false;
+
+  void _toggleDaltonism() {
+    setState(() {
+      _isDaltonismEnabled = !_isDaltonismEnabled;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Daltonism App'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Modo Daltônico',
+              style: TextStyle(fontSize: 20.0),
+            ),
+            Switch(
+              value: _isDaltonismEnabled,
+              onChanged: (value) {
+                _toggleDaltonism();
+              },
+            ),
+            SizedBox(height: 20.0),
+            Text(
+              _isDaltonismEnabled
+                  ? 'Modo daltônico ativado'
+                  : 'Modo daltônico desativado',
+              style: TextStyle(fontSize: 16.0),
+            ),
+          ],
+        ),
+      ),
+      backgroundColor: _isDaltonismEnabled ? Colors.grey[850] : null,
+    );
+  }
+}
